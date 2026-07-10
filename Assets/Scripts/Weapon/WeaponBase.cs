@@ -2,24 +2,23 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-    [Header("Weapon Data")]
     [SerializeField] protected WeaponData weaponData;
 
     protected int currentAmmo;
     protected float lastFireTime;
 
-
     protected virtual void Awake()
     {
         if (weaponData == null)
         {
-            Debug.LogError($"{name} missing WeaponData.");
+            Debug.LogError($"{name} is missing WeaponData.");
             enabled = false;
             return;
         }
 
         currentAmmo = weaponData.magazineSize;
     }
+
     public void TryFire()
     {
         if (!CanFire())
@@ -33,11 +32,10 @@ public abstract class WeaponBase : MonoBehaviour
 
     protected virtual bool CanFire()
     {
-        bool hasAmmo = weaponData.infiniteAmmo || currentAmmo > 0;
+        bool hasAmmo =weaponData.infiniteAmmo || currentAmmo > 0;
 
         bool cooldownFinished =
             Time.time >= lastFireTime + weaponData.fireRate;
-
 
         return hasAmmo && cooldownFinished;
     }
@@ -45,15 +43,14 @@ public abstract class WeaponBase : MonoBehaviour
     protected virtual void ConsumeAmmo()
     {
         if (!weaponData.infiniteAmmo)
-        {
             currentAmmo--;
-        }
     }
 
     protected virtual void StartCooldown()
     {
         lastFireTime = Time.time;
     }
+
     protected abstract void Fire();
 
     public virtual void Reload()
@@ -62,6 +59,4 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
     public int CurrentAmmo => currentAmmo;
-
-    public WeaponData WeaponData => weaponData;
 }

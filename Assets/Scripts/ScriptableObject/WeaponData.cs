@@ -3,29 +3,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/WeaponData")]
 public class WeaponData : ScriptableObject
 {
-    [Header("Name")]
+    [Header("General")]
     public string weaponName;
 
-    [Header("Weapon Setting")]
-    public float reloadTime = 2f;
-    [Min(0f)]
-    public float damage = 10f; 
-    public float range = 100f;
-
-    [Tooltip("Seconds between each shot")]
-    public float fireRate = 0.5f; 
+    [Header("Damage")]
+    [Min(0)]
+    public float damage = 10f;
+    [Min(1)]
+    public float range = 20f;
+    [Tooltip("Seconds between shots")]
+    [Min(0.01f)]
+    public float fireRate = 0.25f;
 
     [Header("Ammo")]
     public bool infiniteAmmo;
-    public int magazineSize = 30;  
+    [Min(1)]
+    public int magazineSize = 12;
+    [Min(0)]
     public int maxAmmo = 120;
 
-    [Header("FX")]
-    public ParticleSystem muzzleFlash;
-    public AudioClip fireSound;
+    [Header("Reload")]
+    public float reloadTime = 1.5f;
 
-    [Header("Projectile")]
-    public Transform firePoint;
-    public GameObject bulletPrefab;
-
+    [Header("Accuracy")]
+    [Tooltip("Random spread angle in degrees")]
+    public float spreadAngle = 0f;
 }
