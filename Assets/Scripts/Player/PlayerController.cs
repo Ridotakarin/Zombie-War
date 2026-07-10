@@ -6,13 +6,12 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerData playerData;
     [SerializeField] private PlayerInputHandler input;
+    [SerializeField] private WeaponController weaponController;
     [SerializeField] private Animator animator;
 
     private CharacterController characterController;
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
-
-
 
     private void Awake()
     {
@@ -24,29 +23,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        Rotate();
+        HandleMovement();
+        HandleRotation();
+        HandleWeapon();
         UpdateAnimation();
     }
 
-    private void Move()
-    {
-        Vector2 move = input.MoveInput;
+    #region Movement
 
-        Vector3 direction = new Vector3(move.x, 0f, move.y);
+    private void HandleMovement()
+    {
+        Vector2 moveInput = input.MoveInput;
+
+        Vector3 moveDirection = new Vector3(moveInput.x, 0f, moveInput.y);
 
         characterController.Move(
-            direction * playerData.moveSpeed * Time.deltaTime);
+            moveDirection * playerData.moveSpeed * Time.deltaTime);
     }
 
-    private void Rotate()
+    private void HandleRotation()
     {
-        Vector2 move = input.MoveInput;
+        Vector2 moveInput = input.MoveInput;
 
-        if (move.sqrMagnitude < 0.01f)
+        if (moveInput.sqrMagnitude < 0.01f)
             return;
 
-        Vector3 lookDirection = new Vector3(move.x, 0f, move.y);
+        Vector3 lookDirection = new Vector3(moveInput.x, 0f, moveInput.y);
 
         Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
 
@@ -56,10 +58,34 @@ public class PlayerController : MonoBehaviour
             playerData.rotationSpeed * Time.deltaTime);
     }
 
+    #endregion
+
+    #region Weapon
+
+    private void HandleWeapon()
+    {
+        if (input.IsFireHeld)
+        {
+            weaponController.Fire();
+        }
+
+        if (input.ReloadPressed)
+        {
+            weaponController.Reload();
+        }
+
+        
+    }
+
+    #endregion
+
+    #region Animation
 
     private void UpdateAnimation()
     {
         float speed = characterController.velocity.magnitude;
         animator.SetFloat(SpeedHash, speed);
     }
+
+    #endregion
 }

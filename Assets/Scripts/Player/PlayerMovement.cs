@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerInputHandler inputHandler;
+    [SerializeField] private WeaponController weaponController;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -54,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
     private void DebugInput()
     {
         if (inputHandler.IsFireHeld)
+        {
+            weaponController.Fire();
             Debug.Log("Holding Fire");
+        }
 
         if (inputHandler.ReloadPressed)
             Debug.Log("Reload");
