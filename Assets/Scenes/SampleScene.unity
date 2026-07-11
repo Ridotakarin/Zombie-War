@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 6820466}
   - component: {fileID: 6820465}
   - component: {fileID: 6820464}
+  - component: {fileID: 6820468}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -231,6 +232,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6820468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1009a63ef20c34ba948d293a3b65df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Surface
+  surfaceType: 2
 --- !u!1 &274852612
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 354450918}
   m_Layer: 0
-  m_Name: '======================================== '
+  m_Name: '================ Manager ======================== '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,6 +534,7 @@ GameObject:
   - component: {fileID: 376514051}
   - component: {fileID: 376514050}
   - component: {fileID: 376514049}
+  - component: {fileID: 376514053}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -621,6 +636,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &376514053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376514048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1009a63ef20c34ba948d293a3b65df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Surface
+  surfaceType: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +789,7 @@ GameObject:
   - component: {fileID: 475773195}
   - component: {fileID: 475773194}
   - component: {fileID: 475773193}
+  - component: {fileID: 475773198}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -873,6 +902,67 @@ Transform:
   m_LocalPosition: {x: 10.09, y: 2.05, z: 7.13134}
   m_LocalScale: {x: 2.32, y: 2.32, z: 2.32}
   m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &475773198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475773192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1009a63ef20c34ba948d293a3b65df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Surface
+  surfaceType: 1
+--- !u!1 &486812238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486812240}
+  - component: {fileID: 486812239}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &486812239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486812238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7e6e635ea18d94c91a6b379ac954cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolManager
+  pools:
+  - id: 
+    prefab: {fileID: 0}
+    size: 0
+--- !u!4 &486812240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486812238}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.05941, y: -0, z: -5.06582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2073,6 +2163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1327462195}
+  - {fileID: 1810929959}
   m_Father: {fileID: 1379078462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1530386592
@@ -2087,8 +2178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a17b45e8540fb49b33eb27d8c4eed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pistol
-  weaponData: {fileID: 11400000, guid: 5f67f1c4e2af0604492ad2b0601075ce, type: 2}
+  weaponData: {fileID: 11400000, guid: 36ff14310f0dfdf41a81164187d0523e, type: 2}
   firePoint: {fileID: 1327462195}
+  muzzlePoint: {fileID: 1810929959}
   hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2202,6 +2294,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1810929958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810929959}
+  m_Layer: 0
+  m_Name: muzzlePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810929959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810929958}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1530386591}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1810944519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2689,6 +2812,7 @@ GameObject:
   - component: {fileID: 2112715108}
   - component: {fileID: 2112715107}
   - component: {fileID: 2112715106}
+  - component: {fileID: 2112715110}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -2789,6 +2913,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2112715110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112715105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1009a63ef20c34ba948d293a3b65df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Surface
+  surfaceType: 2
 --- !u!1 &2139000063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,11 +3149,12 @@ SceneRoots:
   - {fileID: 517346276}
   - {fileID: 803103042}
   - {fileID: 657768811}
+  - {fileID: 1629467910}
   - {fileID: 1685890089}
   - {fileID: 376514052}
   - {fileID: 6820467}
   - {fileID: 2112715109}
   - {fileID: 475773197}
   - {fileID: 354450918}
+  - {fileID: 486812240}
   - {fileID: 333056576}
-  - {fileID: 1629467910}

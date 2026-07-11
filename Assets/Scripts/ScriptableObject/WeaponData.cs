@@ -28,4 +28,10 @@ public class WeaponData : ScriptableObject
     [Header("Accuracy")]
     [Tooltip("Random spread angle in degrees")]
     public float spreadAngle = 0f;
+
+    [Header("Effects")]
+    public ParticleSystem muzzleFlash;
+    public ParticleSystem defaultImpact;
+    public ParticleSystem fleshImpact;
+    public ParticleSystem objectImpact;
 }

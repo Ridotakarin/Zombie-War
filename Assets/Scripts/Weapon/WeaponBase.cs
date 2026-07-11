@@ -71,16 +71,44 @@ public abstract class WeaponBase : MonoBehaviour
         //    AudioSource.PlayClipAtPoint(weaponData.fireSound, transform.position);
         //}
     }
-    protected virtual void PlayMuzzleFlash(ParticleSystem muzzleFlash)
+    protected virtual void SpawnEffect(ParticleSystem prefab, Vector3 position, Quaternion rotation, float destroyTime)
     {
-        if (muzzleFlash != null)
-        {
-            muzzleFlash.Play();
-        }
+        if (prefab == null)
+            return;
+
+        ParticleSystem effect = Instantiate(prefab, position, rotation);
+
+        effect.Play();
+
+        Destroy(effect.gameObject, destroyTime);
     }
-    protected virtual void SpawnHitEffect()
+    protected virtual void PlayMuzzleFlash(Transform firePoint, Transform muzzlePoint)
     {
-       Debug.Log("Play hit effect");
+        SpawnEffect(weaponData.muzzleFlash, firePoint.position, muzzlePoint.rotation, 0.15f);
+    }
+    protected virtual void SpawnHitEffect(RaycastHit hit)
+    {
+        ParticleSystem effect = weaponData.defaultImpact;
+
+        if (hit.collider.TryGetComponent(out Surface surface))
+        {
+            switch (surface.SurfaceType)
+            {
+                case SurfaceType.Flesh:
+                    effect = weaponData.fleshImpact;
+                    break;
+
+                case SurfaceType.Object:
+                    effect = weaponData.objectImpact;
+                    break;
+                default:
+                    effect = weaponData.defaultImpact;
+                    break;
+            }
+        }
+
+        SpawnEffect(effect, hit.point, Quaternion.LookRotation(hit.normal),1f);
+        Debug.Log($"Hit {effect}.");
     }
     #endregion
     #region Reload
