@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: PistolData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: 
-  reloadTime: 2
   damage: 10
-  range: 100
+  range: 10
   fireRate: 0.5
   infiniteAmmo: 0
   magazineSize: 12
   maxAmmo: 60
-  muzzleFlash: {fileID: 0}
-  fireSound: {fileID: 0}
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  reloadTime: 2
+  spreadAngle: 0

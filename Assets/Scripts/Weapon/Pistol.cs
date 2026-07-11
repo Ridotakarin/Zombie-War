@@ -4,7 +4,9 @@ public class Pistol : WeaponBase
 {
     [Header("References")]
     [SerializeField] private Transform firePoint;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
+    [Header("Layer Mask")]
     [SerializeField] private LayerMask hitMask = ~0;
 
     private void OnDrawGizmosSelected()
@@ -16,31 +18,19 @@ public class Pistol : WeaponBase
     }
     protected override void Fire()
     {
+        PlayMuzzleFlash();
+        PlayFireSound();
         Vector3 direction = GetFireDirection();
 
         if (Physics.Raycast(firePoint.position, direction, out RaycastHit hit, weaponData.range, hitMask))
         {
             Debug.DrawLine(firePoint.position, hit.point, Color.red, 1f);
-
-            Debug.Log($"Hit : {hit.collider.name}");
-
-            if (hit.collider.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(weaponData.damage);
-            }
-
-            // TODO
-            // Hit Effect
+            OnHit(hit);
         }
         else
         {
-            Debug.DrawRay(firePoint.position, direction * weaponData.range, Color.green, 1f);
-            Debug.Log("Missed");
+            OnMiss(direction);
         }
-
-        // TODO
-        // Muzzle Flash
-        // Audio
     }
 
     private Vector3 GetFireDirection()
@@ -49,9 +39,36 @@ public class Pistol : WeaponBase
 
         if (weaponData.spreadAngle <= 0) return direction;
 
-        float angle = Random.Range(-weaponData.spreadAngle,weaponData.spreadAngle);
+        float angle = Random.Range(-weaponData.spreadAngle, weaponData.spreadAngle);
 
         return Quaternion.AngleAxis(angle, Vector3.up) * direction;
     }
-    
+
+    private void PlayMuzzleFlash()
+    {
+        muzzleFlash?.Play();
+    }
+    private void OnHit(RaycastHit hit)
+    {
+        Debug.Log($"Hit : {hit.collider.name}");
+        SpawnHitEffect();
+        if (hit.collider.TryGetComponent(out IDamageable target))
+        {
+            target.TakeDamage(weaponData.damage);
+        }
+    }
+    private void SpawnHitEffect()
+    {
+        Debug.Log("Play hit effect");
+    }
+    private void OnMiss(Vector3 direction)
+    {
+        Debug.DrawRay(firePoint.position, direction * weaponData.range, Color.green, 1f);
+        Debug.Log("Missed");
+    }
+    private void PlayFireSound()
+    {
+        Debug.Log("Play fire sound");
+    }
+
 }

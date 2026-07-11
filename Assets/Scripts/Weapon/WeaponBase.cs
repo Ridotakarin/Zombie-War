@@ -19,6 +19,7 @@ public abstract class WeaponBase : MonoBehaviour
         currentAmmo = weaponData.magazineSize;
     }
 
+    #region Fire
     public void TryFire()
     {
         if (!CanFire())
@@ -52,11 +53,42 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
     protected abstract void Fire();
+    #endregion
+    #region Helper
+    protected virtual Vector3 GetFireDirection(Transform firePos)
+    {
+        Vector3 direction = firePos.forward;
+        if (weaponData.spreadAngle <= 0f) return direction;
 
+        float angle = Random.Range(-weaponData.spreadAngle, weaponData.spreadAngle);
+        return Quaternion.AngleAxis(angle, Vector3.up) * direction;
+    }
+    protected virtual void PlayFireSound()
+    {
+        Debug.Log($"Firing {weaponData.weaponName} sound.");
+        //if (weaponData.fireSound != null)
+        //{
+        //    AudioSource.PlayClipAtPoint(weaponData.fireSound, transform.position);
+        //}
+    }
+    protected virtual void PlayMuzzleFlash(ParticleSystem muzzleFlash)
+    {
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.Play();
+        }
+    }
+    protected virtual void SpawnHitEffect()
+    {
+       Debug.Log("Play hit effect");
+    }
+    #endregion
+    #region Reload
     public virtual void Reload()
     {
         currentAmmo = weaponData.magazineSize;
     }
 
     public int CurrentAmmo => currentAmmo;
+    #endregion
 }
