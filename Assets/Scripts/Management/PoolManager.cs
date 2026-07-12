@@ -46,7 +46,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public T Spawn<T>(string id) where T : PoolObject
+    public PoolObject Spawn(string id)
     {
         if (!poolDictionary.TryGetValue(id, out Queue<PoolObject> queue))
         {
@@ -61,9 +61,10 @@ public class PoolManager : MonoBehaviour
         }
 
         PoolObject obj = queue.Dequeue();
+
         obj.OnSpawn();
 
-        return obj as T;
+        return obj;
     }
 
     public void Release(PoolObject obj)
@@ -73,13 +74,11 @@ public class PoolManager : MonoBehaviour
 
         if (!poolDictionary.TryGetValue(obj.poolID, out Queue<PoolObject> queue))
         {
-            Debug.LogError($"Pool [{obj.poolID}] không tồn tại.");
+            Debug.LogError($"Pool [{obj.poolID}] not found.");
             return;
         }
 
         obj.transform.SetParent(transform);
-        obj.transform.localPosition = Vector3.zero;
-        obj.transform.localRotation = Quaternion.identity;
 
         obj.OnRelease();
 

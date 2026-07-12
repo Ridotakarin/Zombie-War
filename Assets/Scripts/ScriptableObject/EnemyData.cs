@@ -22,6 +22,9 @@ public class EnemyData : ScriptableObject
     [Min(0f)]
     public float attackCooldown = 1f;
 
+    [Header("Detection")]
+    [Min(0f)]
+    public float chaseRange = 15f;
 
     [Header("Animation")]
     public float attackAnimationDelay = 0.3f;

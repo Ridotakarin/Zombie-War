@@ -1,59 +1,87 @@
-using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour,IDamageable
+public class Enemy : PoolObject, IDamageable
 {
     [Header("Enemy Data")]
-    [SerializeField] private EnemyData enemyData;
+    [SerializeField] protected EnemyData enemyData;
 
-    [Header("Run Time Variables")]
-    [SerializeField] private float currentHealth;
-    [SerializeField] private float currentMoveSpeed;
+    [Header("Runtime")]
+    [SerializeField] protected float currentHealth;
+    [SerializeField] protected float currentMoveSpeed;
 
-    private void Awake()
+    protected DissolveEffect dissolveEffect;
+    protected bool isDead;
+
+    protected virtual void Awake()
     {
-        if(enemyData == null)
+        if (enemyData == null)
         {
-            Debug.LogError("EnemyData is not assigned in the inspector.");
+            Debug.LogError($"{name} is missing EnemyData.");
+            enabled = false;
             return;
         }
 
-        Initialize();
+        dissolveEffect = GetComponent<DissolveEffect>();
+
+        if (dissolveEffect != null)
+            dissolveEffect.OnDissolveFinished += OnDissolveFinished;
     }
 
-    private void Initialize()
+    public override void OnSpawn()
     {
+        base.OnSpawn();
+
         currentHealth = enemyData.maxHealth;
         currentMoveSpeed = enemyData.moveSpeed;
-    }
-    
-    public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        // Implement damage logic here
-        Debug.Log($"{name} took {damage} damage.");
+        isDead = false;
 
-        if( currentHealth < 0 )
+        dissolveEffect?.ResetDissolve();
+    }
+
+    public override void OnRelease()
+    {
+        base.OnRelease();
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        if (isDead)
+            return;
+
+        currentHealth -= damage;
+
+        if (currentHealth <= 0f)
         {
-            currentHealth = 0;
+            currentHealth = 0f;
             Die();
         }
     }
+
     protected virtual void Die()
     {
-        // Implement death logic here
-        Debug.Log($"{name} has died.");
-        Destroy(gameObject,1f);
+        if (isDead)
+            return;
+
+        isDead = true;
+
+        if (dissolveEffect != null)
+            dissolveEffect.PlayDissolve();
+        else
+            OnDissolveFinished();
     }
 
+    protected virtual void OnDissolveFinished()
+    {
+        PoolManager.Instance.Release(this);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (dissolveEffect != null)
+            dissolveEffect.OnDissolveFinished -= OnDissolveFinished;
+    }
+
+    public EnemyData Data => enemyData;
+    public float CurrentHealth => currentHealth;
     public float CurrentMoveSpeed => currentMoveSpeed;
-    public void SetHealth(float health)
-    {
-        currentHealth = health;
-    }
-    public void SetMoveSpeed(float moveSpeed)
-    {
-        currentMoveSpeed = moveSpeed;
-    }
-
 }

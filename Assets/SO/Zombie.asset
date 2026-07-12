@@ -15,6 +15,10 @@ MonoBehaviour:
   enemyName: Zombie
   maxHealth: 100
   moveSpeed: 3
-  attackRange: 1.5
+  attackRange: 2
   attackDamage: 10
   attackCooldown: 1
+  chaseRange: 15
+  attackAnimationDelay: 0.3
+  hitEffect: {fileID: 0}
+  deathEffect: {fileID: 0}
