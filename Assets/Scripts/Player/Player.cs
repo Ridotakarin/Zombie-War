@@ -58,6 +58,10 @@ public class Player : MonoBehaviour, IDamageable
 
         OnDead?.Invoke();
     }
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+    }    
 
     public bool IsDead => isDead;
     public float CurrentHealth => currentHealth;

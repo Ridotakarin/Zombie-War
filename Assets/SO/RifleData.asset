@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Rifle
   damage: 10
   range: 50
-  fireRate: 0.2
+  fireRate: 0.1
   infiniteAmmo: 1
   magazineSize: 30
   maxAmmo: 120

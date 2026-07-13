@@ -14,7 +14,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
-        // Luôn lấy input từ joystick
         MoveInput = moveJoystick.Direction;
     }
 

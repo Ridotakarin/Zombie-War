@@ -1,38 +1,57 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Enemy Spawn Setting")]
+    [Header("Spawn Setting")]
     [SerializeField] private string enemyID = "Zombie";
-    [SerializeField] private float spawnInterval = 5f;
-    [SerializeField] private bool autoSpawn = true;
-    [SerializeField] private List<Transform> spawnPos;
-    
-    private float spawnTimer;
+    [SerializeField] private List<Transform> spawnPoints = new();
+    [SerializeField] private float spawnRadius = 1.5f;
 
-
-    void Update()
+    [ContextMenu("Spawn 1 Enemy")]
+    public void SpawnEnemy()
     {
-        if(!autoSpawn) return;
-        spawnTimer += Time.deltaTime;
+        SpawnEnemies(1);
+    }
 
-        if(spawnTimer >= spawnInterval)
+    public void SpawnEnemies(int amount)
+    {
+        if (spawnPoints.Count == 0)
         {
-            spawnTimer = 0f;
-            SpawnEnemy();
+            Debug.LogWarning($"{name}: No Spawn Points.");
+            return;
+        }
+
+        for (int i = 0; i < amount; i++)
+        {
+            PoolObject obj = PoolManager.Instance.Spawn(enemyID);
+
+            if (obj == null)
+                return;
+
+            Transform point = spawnPoints[Random.Range(0, spawnPoints.Count)];
+
+            Vector2 offset = Random.insideUnitCircle * spawnRadius;
+
+            Vector3 spawnPosition = point.position;
+            spawnPosition.x += offset.x;
+            spawnPosition.z += offset.y;
+
+            obj.transform.SetPositionAndRotation(spawnPosition, point.rotation);
         }
     }
 
-    [ContextMenu("Spawn Enemy")]
-    public void SpawnEnemy()
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
-        PoolObject obj = PoolManager.Instance.Spawn(enemyID);
-        if (obj == null) return;
-        int randomIndex = UnityEngine.Random.Range(0, spawnPos.Count);
-        obj.transform.SetPositionAndRotation(spawnPos[randomIndex].position, Quaternion.identity);
+        Gizmos.color = Color.green;
+
+        foreach (Transform point in spawnPoints)
+        {
+            if (point == null) continue;
+
+            Gizmos.DrawWireSphere(point.position, spawnRadius);
+        }
     }
+#endif
 }

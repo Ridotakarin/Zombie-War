@@ -77,13 +77,31 @@ public class PlayerController : MonoBehaviour
 
     #region Weapon
 
+
     private void HandleWeapon()
     {
         if (input.IsFireHeld)
+        {
             weaponController.Fire();
+        }
+
 
         if (input.ReloadPressed)
+        {
             weaponController.Reload();
+        }
+
+
+        if (input.SwitchPressed)
+        {
+            weaponController.SwitchWeapon();
+        }
+
+
+        if (input.BombPressed)
+        {
+            weaponController.ThrowGrenade();
+        }
     }
 
     #endregion

@@ -18,7 +18,6 @@ public class ZombieController : MonoBehaviour
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
     private static readonly int AttackHash = Animator.StringToHash("Attack");
-    private static readonly int DieHash = Animator.StringToHash("Dead");
 
     private void Awake()
     {
@@ -113,7 +112,7 @@ public class ZombieController : MonoBehaviour
         agent.isStopped = true;
         agent.enabled = false;
 
-        animator.Play(DieHash);
+        animator.Play(Random.Range(0, 1) == 0? "Dead" : "Dead_Ex");
     }
     
 #endregion
