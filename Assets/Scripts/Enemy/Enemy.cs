@@ -14,6 +14,7 @@ public class Enemy : PoolObject, IDamageable
     protected bool isDead;
 
     public event Action OnDead;
+    public event Action OnSpawned;
 
     protected virtual void Awake()
     {
@@ -39,6 +40,7 @@ public class Enemy : PoolObject, IDamageable
         isDead = false;
 
         dissolveEffect?.ResetDissolve();
+        OnSpawned?.Invoke();
     }
 
     public override void OnRelease()

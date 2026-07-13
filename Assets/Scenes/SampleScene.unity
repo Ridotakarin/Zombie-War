@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyID: Zombie
-  spawnInterval: 2
+  spawnInterval: 0.5
   autoSpawn: 1
   spawnPos:
   - {fileID: 910867629}
@@ -1802,29 +1802,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1536202594207956560, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536202594207956560, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536202594207956560, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
-      propertyPath: m_ImplicitTensor
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5046938679190597684, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
       propertyPath: m_Name
       value: Zombie
-      objectReference: {fileID: 0}
-    - target: {fileID: 7480347813089158976, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7480347813089158976, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
-      propertyPath: m_Radius
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2577,8 +2557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grenade
   explosionVFX: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
-  explosionRadius: 10
-  explosionForce: 10
+  explosionRadius: 5
+  explosionForce: 15
   upwardsModifier: 1
   affectedLayers:
     serializedVersion: 2
@@ -2893,8 +2873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grenade
   explosionVFX: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
-  explosionRadius: 10
-  explosionForce: 10
+  explosionRadius: 5
+  explosionForce: 15
   upwardsModifier: 1
   affectedLayers:
     serializedVersion: 2

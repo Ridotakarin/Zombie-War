@@ -18,7 +18,6 @@ public class Grenade : MonoBehaviour
     {
         if (exploded)
             return;
-        
         exploded = true;
         Explode();
     }
@@ -36,6 +35,10 @@ public class Grenade : MonoBehaviour
 
         foreach (Collider victim in victims)
         {
+            if (victim.TryGetComponent(out Enemy enemy))
+            {
+                enemy.TakeDamage(100);
+            }
             if (victim.attachedRigidbody != null)
             {
                 victim.attachedRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius,upwardsModifier,ForceMode.Impulse);

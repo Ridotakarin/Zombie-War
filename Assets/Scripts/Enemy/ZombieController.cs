@@ -25,8 +25,10 @@ public class ZombieController : MonoBehaviour
         enemy = GetComponent<Enemy>();
         agent = GetComponent<NavMeshAgent>();
 
-        agent.speed = enemy.CurrentMoveSpeed;
         enemy.OnDead += OnDead;
+        enemy.OnSpawned += Init;
+        agent.speed = enemy.CurrentMoveSpeed;
+
     }
 
     private void Start()
@@ -96,10 +98,7 @@ public class ZombieController : MonoBehaviour
         isAttacking = true;
         agent.isStopped = true;
 
-        transform.LookAt(new Vector3(
-            target.position.x,
-            transform.position.y,
-            target.position.z));
+        transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
         animator.SetTrigger(AttackHash);
         Debug.Log("Attack triggered");
@@ -153,9 +152,18 @@ public class ZombieController : MonoBehaviour
     private void Init()
     {
         isDead = false;
+        isAttacking = false; 
+        attackTimer = 0f;    
 
-        agent.isStopped = false;
-        agent.enabled = true;
+        if (agent != null)
+        {
+            agent.enabled = true;   
+            agent.isStopped = false;
+            if (agent.isOnNavMesh)
+            {
+                agent.ResetPath();
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()

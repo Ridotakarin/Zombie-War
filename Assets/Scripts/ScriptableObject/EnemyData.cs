@@ -25,12 +25,4 @@ public class EnemyData : ScriptableObject
     [Header("Detection")]
     [Min(0f)]
     public float chaseRange = 15f;
-
-    [Header("Animation")]
-    public float attackAnimationDelay = 0.3f;
-
-
-    [Header("Effects")]
-    public ParticleSystem hitEffect;
-    public ParticleSystem deathEffect;
 }

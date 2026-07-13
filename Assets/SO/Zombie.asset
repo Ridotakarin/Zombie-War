@@ -18,7 +18,4 @@ MonoBehaviour:
   attackRange: 2
   attackDamage: 10
   attackCooldown: 1
-  chaseRange: 5
-  attackAnimationDelay: 0.3
-  hitEffect: {fileID: 0}
-  deathEffect: {fileID: 0}
+  chaseRange: 15
