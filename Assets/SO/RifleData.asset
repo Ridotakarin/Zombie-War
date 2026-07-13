@@ -15,12 +15,12 @@ MonoBehaviour:
   weaponName: Rifle
   damage: 10
   range: 50
-  fireRate: 0.1
+  fireRate: 0.2
   infiniteAmmo: 1
   magazineSize: 30
   maxAmmo: 120
   reloadTime: 2
-  spreadAngle: 5
+  spreadAngle: 1
   muzzleFlash: {fileID: 19800006, guid: c5946a66b3eec2d479e20b7315b06bf8, type: 3}
   defaultImpact: {fileID: 19800002, guid: 855f647f81ad9774a905ff23fdc26618, type: 3}
   fleshImpact: {fileID: 19800002, guid: f75efcef4bb42054abf94f8e5c701adc, type: 3}

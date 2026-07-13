@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : PoolObject, IDamageable
@@ -11,6 +12,8 @@ public class Enemy : PoolObject, IDamageable
 
     protected DissolveEffect dissolveEffect;
     protected bool isDead;
+
+    public event Action OnDead;
 
     protected virtual void Awake()
     {
@@ -40,6 +43,7 @@ public class Enemy : PoolObject, IDamageable
 
     public override void OnRelease()
     {
+        StopAllCoroutines();
         base.OnRelease();
     }
 
@@ -49,6 +53,7 @@ public class Enemy : PoolObject, IDamageable
             return;
 
         currentHealth -= damage;
+        Debug.Log(currentHealth);
 
         if (currentHealth <= 0f)
         {
@@ -59,20 +64,27 @@ public class Enemy : PoolObject, IDamageable
 
     protected virtual void Die()
     {
+
         if (isDead)
             return;
 
         isDead = true;
-
+        OnDead?.Invoke();
+        Debug.LogWarning("Dead! Trigger Dissolve");
+        
+    }
+    public void PlayDissolve()
+    {
         if (dissolveEffect != null)
             dissolveEffect.PlayDissolve();
         else
             OnDissolveFinished();
-    }
+    }    
 
     protected virtual void OnDissolveFinished()
     {
-        PoolManager.Instance.Release(this);
+        if(PoolManager.Instance != null)
+        { PoolManager.Instance.Release(this); }
     }
 
     protected virtual void OnDestroy()

@@ -7,16 +7,18 @@ public class ZombieController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator;
-
+    
     private Enemy enemy;
     private NavMeshAgent agent;
     private Transform target;
 
     private bool isAttacking;
+    private bool isDead;
     private float attackTimer;
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
     private static readonly int AttackHash = Animator.StringToHash("Attack");
+    private static readonly int DieHash = Animator.StringToHash("Dead");
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class ZombieController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         agent.speed = enemy.CurrentMoveSpeed;
+        enemy.OnDead += OnDead;
     }
 
     private void Start()
@@ -44,6 +47,8 @@ public class ZombieController : MonoBehaviour
     {
         if (target == null)
             return;
+        if (isDead) return;
+        
 
         attackTimer -= Time.deltaTime;
 
@@ -71,6 +76,7 @@ public class ZombieController : MonoBehaviour
         UpdateAnimation();
     }
 
+    #region State
     private void Idle()
     {
         agent.isStopped = true;
@@ -101,8 +107,19 @@ public class ZombieController : MonoBehaviour
         attackTimer = enemy.Data.attackCooldown;
         Debug.Log($"{attackTimer} Reseted");
     }
+    private void OnDead()
+    {
+        isDead= true;
 
-    // Animation Event
+        agent.isStopped = true;
+        agent.enabled = false;
+
+        animator.Play(DieHash);
+    }
+    
+#endregion
+
+    #region Animation Event
     public void DealDamage()
     {
         if (target == null)
@@ -118,17 +135,27 @@ public class ZombieController : MonoBehaviour
             damageable.TakeDamage(enemy.Data.attackDamage);
         }
     }
-
-    // Animation Event
     public void AttackFinished()
     {
         isAttacking = false;
         agent.isStopped = false;
     }
-
+    public void DeadFinished()
+    {
+        enemy.PlayDissolve();
+    }
+    #endregion
     private void UpdateAnimation()
     {
         animator.SetFloat(SpeedHash, agent.velocity.magnitude);
+
+    }
+    private void Init()
+    {
+        isDead = false;
+
+        agent.isStopped = false;
+        agent.enabled = true;
     }
 
     private void OnDrawGizmosSelected()

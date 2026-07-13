@@ -1,16 +1,21 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class DissolveEffect: MonoBehaviour
+public class DissolveEffect : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private Renderer[] renderers;
+
+    [Header("Settings")]
+    [Tooltip("Thời gian tan biến hoàn toàn tính bằng giây")]
+    [SerializeField] private float dissolveDuration = 1.5f;
 
     private MaterialPropertyBlock block;
     private static readonly int DissolveID = Shader.PropertyToID("_Dissolve");
 
     public event Action OnDissolveFinished;
+
     private void Awake()
     {
         block = new MaterialPropertyBlock();
@@ -18,36 +23,47 @@ public class DissolveEffect: MonoBehaviour
 
     public void PlayDissolve()
     {
+        StopAllCoroutines();
         StartCoroutine(DissolveRoutine());
     }
+
     public void ResetDissolve()
     {
+        UpdateRenderersProperty(0f);
+    }
+
+    private IEnumerator DissolveRoutine()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < dissolveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float progress = Mathf.Clamp01(elapsedTime / dissolveDuration);
+
+            UpdateRenderersProperty(progress);
+            yield return null;
+        }
+        UpdateRenderersProperty(1f);
+
+        OnDissolveFinished?.Invoke();
+    }
+    private void UpdateRenderersProperty(float value)
+    {
+        block.Clear();
+        block.SetFloat(DissolveID, value);
+
         foreach (Renderer renderer in renderers)
         {
-            renderer.GetPropertyBlock(block);
-
-            block.SetFloat(DissolveID, 0f);
+            if (renderer == null)
+                continue;
 
             renderer.SetPropertyBlock(block);
         }
     }
-
-    public IEnumerator DissolveRoutine()
+    private void OnDisable()
     {
-        float value = 0f;
-
-        while(value < 1f)
-        {
-            value += Time.deltaTime;
-            foreach (Renderer r in renderers)
-            {
-                r.GetPropertyBlock(block);
-                block.SetFloat(DissolveID, value);
-                r.SetPropertyBlock(block);
-            }
-            yield return null;
-        }
-        OnDissolveFinished?.Invoke();
+        StopAllCoroutines();
     }
-    
 }

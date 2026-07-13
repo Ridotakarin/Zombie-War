@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -10,19 +11,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private CharacterController characterController;
+    private Player player;
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    private static readonly int DieHash = Animator.StringToHash("Die");
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        player = GetComponent<Player>();
 
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
+
+        player.OnDead += OnPlayerDead;
+    }
+
+    private void OnDestroy()
+    {
+        if (player != null)
+            player.OnDead -= OnPlayerDead;
     }
 
     private void Update()
     {
+        if (player.IsDead)
+            return;
+
         HandleMovement();
         HandleRotation();
         HandleWeapon();
@@ -65,16 +80,10 @@ public class PlayerController : MonoBehaviour
     private void HandleWeapon()
     {
         if (input.IsFireHeld)
-        {
             weaponController.Fire();
-        }
 
         if (input.ReloadPressed)
-        {
             weaponController.Reload();
-        }
-
-        
     }
 
     #endregion
@@ -83,8 +92,14 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        float speed = characterController.velocity.magnitude;
-        animator.SetFloat(SpeedHash, speed);
+        animator.SetFloat(SpeedHash, characterController.velocity.magnitude);
+    }
+
+    private void OnPlayerDead()
+    {
+        characterController.enabled = false;
+
+        animator.SetTrigger(DieHash);
     }
 
     #endregion
