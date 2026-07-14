@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float hardTimeLimit = 180f;
 
     [Header("Audio")]
+    [SerializeField] private AudioClip gameplayMusic;
     [SerializeField] private AudioClip winSound;
     [SerializeField] private AudioClip loseSound;
 
@@ -29,7 +30,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
         timeRemaining = hardTimeLimit;
     }
-
+    private void Start()
+    {
+        AudioManager.Instance?.PlayMusic(gameplayMusic);
+    }
     private void OnEnable()
     {
         if (player != null) player.OnDead += HandleLose;

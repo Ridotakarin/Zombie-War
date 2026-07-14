@@ -8,27 +8,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
 
-    [Header("Music")]
-    [SerializeField] private AudioClip backgroundMusic;
+    private const string MusicVolumeKey = "MusicVolume";
+    private const string SfxVolumeKey = "SfxVolume";
+
+    public float MusicVolume => musicSource.volume;
+    public float SfxVolume => sfxSource.volume;
 
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-        // Chỉ cần nếu bạn có nhu cầu reload lại scene (nút Retry) sau này;
-        // nếu game chỉ chạy 1 scene xuyên suốt, có thể bỏ dòng này.
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
-        if (backgroundMusic != null)
-            PlayMusic(backgroundMusic);
+        musicSource.volume = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+        sfxSource.volume = PlayerPrefs.GetFloat(SfxVolumeKey, 1f);
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
         if (clip == null) return;
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
         musicSource.clip = clip;
         musicSource.loop = loop;
         musicSource.Play();
@@ -38,5 +38,17 @@ public class AudioManager : MonoBehaviour
     {
         if (clip == null) return;
         sfxSource.PlayOneShot(clip, volume);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        musicSource.volume = value;
+        PlayerPrefs.SetFloat(MusicVolumeKey, value);
+    }
+
+    public void SetSfxVolume(float value)
+    {
+        sfxSource.volume = value;
+        PlayerPrefs.SetFloat(SfxVolumeKey, value);
     }
 }
