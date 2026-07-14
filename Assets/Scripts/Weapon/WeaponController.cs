@@ -40,6 +40,7 @@ public class WeaponController : MonoBehaviour
             return;
 
         weapons[currentWeaponIndex].TryFire();
+        Debug.LogWarning(weapons[currentWeaponIndex].ToString());
     }
 
     public void Reload()
@@ -67,6 +68,7 @@ public class WeaponController : MonoBehaviour
         } while (!unlockedWeapons[next] && next != currentWeaponIndex);
 
         EquipWeapon(next);
+        Debug.LogWarning("Next weapon: "+next.ToString());
     }
 
     public void EquipWeapon(int index)
@@ -109,14 +111,19 @@ public class WeaponController : MonoBehaviour
     public void AddGrenade(int amount)
     {
         grenadeCount += amount;
+        Debug.LogWarning("Add Grednade: "+ amount);
+
     }
 
     public void ThrowGrenade()
     {
+        Debug.LogWarning("Throw Grednade");
         if (grenadeCount <= 0)
             return;
 
         grenadeCount--;
+        Debug.LogWarning("Number of Grednades have: "+grenadeCount);
+
     }
 
     public int GrenadeCount => grenadeCount;
