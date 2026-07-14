@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public enum GameState { Playing, Win, Lose }
 
@@ -9,33 +8,47 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Player player;
+    [SerializeField] private float hardTimeLimit = 180f;
 
-    public event Action<float> OnTimeElapsedChanged; // chỉ để hiển thị HUD
+    public event Action<float> OnTimeRemainingChanged; 
     public event Action OnWin;
     public event Action OnLose;
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
-    private float timeElapsed;
-    private float hardLimit = 300f;
+
+    private float timeRemaining;
 
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+
+        timeRemaining = hardTimeLimit;
     }
 
-    private void OnEnable() => player.OnDead += HandleLose;
-    private void OnDisable() => player.OnDead -= HandleLose;
+    private void OnEnable()
+    {
+        if (player != null) player.OnDead += HandleLose;
+    }
+
+    private void OnDisable()
+    {
+        if (player != null) player.OnDead -= HandleLose;
+    }
 
     private void Update()
     {
-        if (CurrentState != GameState.Playing)
-            return;
+        if (CurrentState != GameState.Playing) return;
 
-        timeElapsed += Time.deltaTime;
-        if(timeElapsed >= hardLimit)
+        timeRemaining -= Time.deltaTime;
+
+        float displayTime = Mathf.Max(0f, timeRemaining);
+        OnTimeRemainingChanged?.Invoke(displayTime);
+
+        if (timeRemaining <= 0f)
+        {
             HandleLose();
-        OnTimeElapsedChanged?.Invoke(timeElapsed);
+        }
     }
 
     public void HandleWin()
