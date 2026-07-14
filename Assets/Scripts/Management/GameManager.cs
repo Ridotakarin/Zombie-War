@@ -10,11 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private float hardTimeLimit = 180f;
 
-    public event Action<float> OnTimeRemainingChanged; 
+    [Header("Audio")]
+    [SerializeField] private AudioClip winSound;
+    [SerializeField] private AudioClip loseSound;
+
+    public event Action<float> OnTimeRemainingChanged;
     public event Action OnWin;
     public event Action OnLose;
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
+    public bool IsPlaying => CurrentState == GameState.Playing;   // NEW — thay cho việc dựa vào timeScale
 
     private float timeRemaining;
 
@@ -22,7 +27,6 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-
         timeRemaining = hardTimeLimit;
     }
 
@@ -41,21 +45,18 @@ public class GameManager : MonoBehaviour
         if (CurrentState != GameState.Playing) return;
 
         timeRemaining -= Time.deltaTime;
-
         float displayTime = Mathf.Max(0f, timeRemaining);
         OnTimeRemainingChanged?.Invoke(displayTime);
 
         if (timeRemaining <= 0f)
-        {
             HandleLose();
-        }
     }
 
     public void HandleWin()
     {
         if (CurrentState != GameState.Playing) return;
         CurrentState = GameState.Win;
-        Time.timeScale = 0f;
+        AudioManager.Instance?.PlaySFX(winSound);
         OnWin?.Invoke();
     }
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing) return;
         CurrentState = GameState.Lose;
-        Time.timeScale = 0f;
+        AudioManager.Instance?.PlaySFX(loseSound);
         OnLose?.Invoke();
     }
 }

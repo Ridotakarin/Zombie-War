@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     {
         if (player.IsDead)
             return;
+        if (GameManager.Instance != null && !GameManager.Instance.IsPlaying) return;
+
 
         HandleMovement();
         HandleRotation();
