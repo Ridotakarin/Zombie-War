@@ -23,14 +23,15 @@ public abstract class WeaponBase : MonoBehaviour
 
     #region Fire
 
-    public void TryFire()
+    public bool TryFire()
     {
         if (!CanFire())
-            return;
+            return false;
 
         ConsumeAmmo();
         StartCooldown();
         Fire();
+        return true;
     }
 
     protected virtual bool CanFire()
@@ -158,7 +159,7 @@ public abstract class WeaponBase : MonoBehaviour
     #region Properties
 
     public WeaponData Data => weaponData;
-
+    public float FireRate => weaponData.fireRate;
     public int CurrentAmmo => currentAmmo;
 
     public int ReserveAmmo => reserveAmmo;

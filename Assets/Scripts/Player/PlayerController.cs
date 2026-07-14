@@ -14,7 +14,13 @@ public class PlayerController : MonoBehaviour
     private Player player;
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
-    private static readonly int DieHash = Animator.StringToHash("Die");
+    private static readonly int DieHash = Animator.StringToHash("Dead");
+    private static readonly int HurtHash = Animator.StringToHash("Hurt");
+    private static readonly int RifleHash = Animator.StringToHash("Rifle_Shoot");
+    private static readonly int PistolHash = Animator.StringToHash("Pistol_Shoot");
+
+
+    private static readonly int HandLayer = 1;
 
     private void Awake()
     {
@@ -22,15 +28,20 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Player>();
 
         animator = GetComponent<Animator>();
-
+        animator.SetLayerWeight(HandLayer, 1f);
         player.OnDead += OnPlayerDead;
-        Debug.Log("Animator setted: " + animator);
+        player.OnTakeDamage += OnTakeDamage;
     }
 
     private void OnDestroy()
     {
         if (player != null)
+        { 
             player.OnDead -= OnPlayerDead;
+            player.OnTakeDamage -= OnTakeDamage;
+        }
+        
+
     }
 
     private void Update()
@@ -83,7 +94,19 @@ public class PlayerController : MonoBehaviour
     {
         if (input.IsFireHeld)
         {
-            weaponController.Fire();
+            bool fired = weaponController.Fire();
+            if(fired)
+            {
+                if (weaponController.CurrentFireRate == 0.1f)
+                {
+                    animator.Play(RifleHash);
+                }
+                else
+                {
+                    animator.Play(PistolHash);
+                }
+                weaponController.Fire();
+            }
         }
 
 
@@ -120,9 +143,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnPlayerDead()
     {
+        animator.SetLayerWeight(HandLayer, 0f);
+        animator.ResetTrigger(HurtHash);
         characterController.enabled = false;
-
         animator.SetTrigger(DieHash);
+    }
+    private void OnTakeDamage()
+    {
+        if (player.IsDead)
+            return;
+
+        animator.SetTrigger(HurtHash);
     }
 
     #endregion

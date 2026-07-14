@@ -38,12 +38,19 @@ public class WeaponController : MonoBehaviour
 
     #region Weapon
 
-    public void Fire()
+    public bool Fire()
     {
         if (weapons.Count == 0)
-            return;
+            return false;
 
-        weapons[currentWeaponIndex].TryFire();
+        return weapons[currentWeaponIndex].TryFire();
+    }
+    public float CurrentFireRate
+    {
+        get
+        {
+            return weapons[currentWeaponIndex].FireRate;
+        }
     }
 
     public void Reload()

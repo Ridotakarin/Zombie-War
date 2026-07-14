@@ -12,6 +12,10 @@ public class Player : MonoBehaviour, IDamageable
     private bool isDead;
 
     public event Action OnDead;
+    public event Action OnTakeDamage;
+    public event Action<float, float> OnHealthChanged;
+
+    public float MaxHealth => playerData.maxHealth;
 
     private void Awake()
     {
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         currentHealth = playerData.maxHealth;
         isDead = false;
+        OnHealthChanged?.Invoke(currentHealth, playerData.maxHealth);
     }
 
     public void TakeDamage(float damage)
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour, IDamageable
             return;
 
         currentHealth -= damage;
+        OnTakeDamage?.Invoke();
 
         Debug.Log($"Player HP : {currentHealth}");
 
@@ -45,12 +51,14 @@ public class Player : MonoBehaviour, IDamageable
             currentHealth = 0f;
             Die();
         }
+        OnHealthChanged?.Invoke(currentHealth, playerData.maxHealth);
     }
 
     private void Die()
     {
         if (isDead)
             return;
+
 
         isDead = true;
 
@@ -61,6 +69,8 @@ public class Player : MonoBehaviour, IDamageable
     public void Heal(float amount)
     {
         currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth + amount, playerData.maxHealth); 
+        OnHealthChanged?.Invoke(currentHealth, playerData.maxHealth);
     }    
 
     public bool IsDead => isDead;

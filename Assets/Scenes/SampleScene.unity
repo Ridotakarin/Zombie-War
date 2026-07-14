@@ -4244,6 +4244,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 895187125816942864, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 895187125816942864, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
@@ -4290,6 +4294,22 @@ PrefabInstance:
     - target: {fileID: 3953942782809874277, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
       propertyPath: m_Name
       value: PlayerArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
+      propertyPath: m_Height
+      value: 1.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
+      propertyPath: m_Center.y
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6746304537922359562, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
       propertyPath: m_IsActive
