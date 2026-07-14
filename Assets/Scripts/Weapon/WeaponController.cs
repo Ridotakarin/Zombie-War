@@ -5,6 +5,7 @@ public class WeaponController : MonoBehaviour
 {
     [Header("Weapons")]
     [SerializeField] private List<WeaponBase> weapons = new();
+    [SerializeField] private List<GameObject> weaponModel = new();
 
     [SerializeField]
     private int currentWeaponIndex;
@@ -27,12 +28,14 @@ public class WeaponController : MonoBehaviour
         unlockedWeapons[0] = true;
 
         currentWeaponIndex = 0;
+        
 
         for (int i = 0; i < weapons.Count; i++)
         {
             weapons[i].gameObject.SetActive(false);
         }
 
+        weaponModel[currentWeaponIndex].SetActive(true);
         weapons[currentWeaponIndex].gameObject.SetActive(true);
     }
 
@@ -92,10 +95,12 @@ public class WeaponController : MonoBehaviour
             return;
 
         weapons[currentWeaponIndex].gameObject.SetActive(false);
+        weaponModel[currentWeaponIndex].SetActive(false);
 
         currentWeaponIndex = index;
 
         weapons[currentWeaponIndex].gameObject.SetActive(true);
+        weaponModel[currentWeaponIndex].SetActive(true);
     }
 
     public void UnlockWeapon(int index)
