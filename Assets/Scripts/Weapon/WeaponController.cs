@@ -10,8 +10,13 @@ public class WeaponController : MonoBehaviour
     private int currentWeaponIndex;
 
     [Header("Grenade")]
-    [SerializeField]
-    private int grenadeCount;
+    [SerializeField] private int grenadeCount;
+
+    [SerializeField] private Grenade grenadePrefab;
+    [SerializeField] private Transform throwPoint;
+
+    [SerializeField] private float throwForce = 12f;
+    [SerializeField] private float upwardForce = 3f;
 
     private bool[] unlockedWeapons;
 

@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         player = GetComponent<Player>();
 
-        if (animator == null)
-            animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         player.OnDead += OnPlayerDead;
+        Debug.Log("Animator setted: " + animator);
     }
 
     private void OnDestroy()
@@ -55,8 +55,6 @@ public class PlayerController : MonoBehaviour
 
         characterController.Move(
             new Vector3(moveInput.x * playerData.moveSpeed, gravity, moveInput.y * playerData.moveSpeed) * Time.deltaTime);
-        //characterController.Move(
-        //    moveDirection * playerData.moveSpeed * Time.deltaTime);
     }
 
     private void HandleRotation()
@@ -118,6 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         float currentSpeed = input.MoveInput.magnitude * playerData.moveSpeed;
         animator.SetFloat(SpeedHash, currentSpeed);
+        Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     private void OnPlayerDead()

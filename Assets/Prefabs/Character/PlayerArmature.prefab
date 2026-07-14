@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 895187125816942864}
   - component: {fileID: 5522479051149956568}
   - component: {fileID: 7343471617161394123}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PlayerArmature
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1259,8 +1259,8 @@ Animator:
   m_GameObject: {fileID: 3953942782809874277}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0e55d5c42cc96404f872b45455603f8b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 035023331dbb59f40832fd4d54e4957e, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: 27fb25b59b343624a91a4efdd555d887, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2116,7 +2116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7620155743950208463}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: WeaponHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
