@@ -97,7 +97,7 @@ public abstract class WeaponBase : MonoBehaviour
         SpawnEffect(weaponData.muzzleFlash,
             firePoint.position,
             muzzlePoint.rotation,
-            0.15f);
+            0.12f);
     }
 
     protected virtual void SpawnHitEffect(RaycastHit hit)

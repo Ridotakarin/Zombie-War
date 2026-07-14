@@ -40,7 +40,6 @@ public class WeaponController : MonoBehaviour
             return;
 
         weapons[currentWeaponIndex].TryFire();
-        Debug.LogWarning(weapons[currentWeaponIndex].ToString());
     }
 
     public void Reload()

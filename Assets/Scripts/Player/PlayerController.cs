@@ -50,10 +50,13 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveInput = input.MoveInput;
 
+        float gravity = characterController.isGrounded ? -0.5f : -9.81f;
         Vector3 moveDirection = new Vector3(moveInput.x, 0f, moveInput.y);
 
         characterController.Move(
-            moveDirection * playerData.moveSpeed * Time.deltaTime);
+            new Vector3(moveInput.x * playerData.moveSpeed, gravity, moveInput.y * playerData.moveSpeed) * Time.deltaTime);
+        //characterController.Move(
+        //    moveDirection * playerData.moveSpeed * Time.deltaTime);
     }
 
     private void HandleRotation()
@@ -89,18 +92,21 @@ public class PlayerController : MonoBehaviour
         if (input.ReloadPressed)
         {
             weaponController.Reload();
+            input.UseReload();
         }
 
 
         if (input.SwitchPressed)
         {
             weaponController.SwitchWeapon();
+            input.UseSwitch();
         }
 
 
         if (input.BombPressed)
         {
             weaponController.ThrowGrenade();
+            input.UseBomb();
         }
     }
 
@@ -110,7 +116,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        animator.SetFloat(SpeedHash, characterController.velocity.magnitude);
+        float currentSpeed = input.MoveInput.magnitude * playerData.moveSpeed;
+        animator.SetFloat(SpeedHash, currentSpeed);
     }
 
     private void OnPlayerDead()

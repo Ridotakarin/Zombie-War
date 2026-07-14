@@ -24,11 +24,15 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnSwitchWeapon() => SwitchPressed = true;
     public void OnBomb() => BombPressed = true;
     #endregion
+    public void UseReload() => ReloadPressed = false;
+    public void UseSwitch() => SwitchPressed = false;
+    public void UseBomb() => BombPressed = false;
 
-    private void LateUpdate()
-    {
-        ReloadPressed = false;
-        SwitchPressed = false;
-        BombPressed = false;
-    }
+
+    //private void LateUpdate()
+    //{
+    //    ReloadPressed = false;
+    //    SwitchPressed = false;
+    //    BombPressed = false;
+    //}
 }
