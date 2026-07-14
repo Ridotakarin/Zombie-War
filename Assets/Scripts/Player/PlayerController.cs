@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour
     {
         float currentSpeed = input.MoveInput.magnitude * playerData.moveSpeed;
         animator.SetFloat(SpeedHash, currentSpeed);
-        Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     private void OnPlayerDead()

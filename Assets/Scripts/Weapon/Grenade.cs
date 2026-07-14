@@ -22,7 +22,7 @@ public class Grenade : MonoBehaviour
         Explode();
     }
 
-    private void Explode()
+    public void Explode()
     {
         if (explosionVFX != null)
         {

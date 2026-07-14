@@ -24,7 +24,6 @@ public class WeaponController : MonoBehaviour
     {
         unlockedWeapons = new bool[weapons.Count];
 
-        // Mặc định chỉ có Pistol
         unlockedWeapons[0] = true;
 
         currentWeaponIndex = 0;
@@ -72,7 +71,6 @@ public class WeaponController : MonoBehaviour
         } while (!unlockedWeapons[next] && next != currentWeaponIndex);
 
         EquipWeapon(next);
-        Debug.LogWarning("Next weapon: "+next.ToString());
     }
 
     public void EquipWeapon(int index)
@@ -100,7 +98,6 @@ public class WeaponController : MonoBehaviour
 
         unlockedWeapons[index] = true;
 
-        // Nhặt súng => Full toàn bộ đạn
         weapons[index].ResetAmmo();
 
         EquipWeapon(index);
@@ -121,13 +118,26 @@ public class WeaponController : MonoBehaviour
 
     public void ThrowGrenade()
     {
-        Debug.LogWarning("Throw Grednade");
         if (grenadeCount <= 0)
             return;
 
         grenadeCount--;
-        Debug.LogWarning("Number of Grednades have: "+grenadeCount);
 
+        Grenade grenade = Instantiate(
+            grenadePrefab,
+            throwPoint.position,
+            throwPoint.rotation);
+
+        Rigidbody rb = grenade.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            Vector3 force =
+                throwPoint.forward * throwForce +
+                Vector3.up * upwardForce;
+
+            rb.AddForce(force, ForceMode.Impulse);
+        }
     }
 
     public int GrenadeCount => grenadeCount;

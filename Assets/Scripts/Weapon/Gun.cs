@@ -47,6 +47,10 @@ public class Gun : WeaponBase
         {
             target.TakeDamage(weaponData.damage);
         }
+        if(hit.collider.TryGetComponent(out Grenade bomb))
+        {
+            bomb.Explode();
+        }
     }
 
     private void OnMiss(Vector3 direction)
