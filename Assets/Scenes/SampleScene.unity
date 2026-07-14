@@ -1220,6 +1220,18 @@ MonoBehaviour:
   - id: Zombie
     prefab: {fileID: 7298773351157918343, guid: 80780e7e4323d654da86a75bf545dc6f, type: 3}
     size: 50
+  - id: Muzzle
+    prefab: {fileID: -8825450939397492035, guid: 904f79682ca4f5d4a917304d6f7bc3fc, type: 3}
+    size: 20
+  - id: Default
+    prefab: {fileID: 1441277515338394391, guid: 8a32031ccc5576047b9bac2c313790c5, type: 3}
+    size: 50
+  - id: Flesh
+    prefab: {fileID: 8748926133773395106, guid: 923463327a697b54f9738e89a8ed5313, type: 3}
+    size: 50
+  - id: Object
+    prefab: {fileID: 3120696077552948865, guid: 9c34af7ca5462b34c9aada361f04b227, type: 3}
+    size: 50
 --- !u!4 &486812240
 Transform:
   m_ObjectHideFlags: 0
@@ -2015,11 +2027,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736220658}
   m_CullTransparentMesh: 1
---- !u!4 &772500980 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7620155743950208463, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-  m_PrefabInstance: {fileID: 5383200141273865468}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &803103041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,11 +3030,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1657069056 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6511201372920754751, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-  m_PrefabInstance: {fileID: 5383200141273865468}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685890088
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,37 +3868,6 @@ Transform:
   - {fileID: 654935097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2055608751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2055608752}
-  m_Layer: 0
-  m_Name: Bomb
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2055608752
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055608751}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 772500980}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061513343
 GameObject:
   m_ObjectHideFlags: 0
@@ -4239,18 +4210,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1810944520}
     m_Modifications:
-    - target: {fileID: 127739411433489380, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 895187125816942864, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 895187125816942864, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     - target: {fileID: 2829290750764404916, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4295,57 +4254,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
-    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_Height
-      value: 1.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_Radius
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_Center.y
-      value: 0.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522479051149956568, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746304537922359562, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920238457098333648, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 7343471617161394123, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: throwPoint
-      value: 
-      objectReference: {fileID: 2055608752}
-    - target: {fileID: 7343471617161394123, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: grenadeCount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7343471617161394123, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: grenadePrefab
-      value: 
-      objectReference: {fileID: 7944798996450050544, guid: 3a79593aefa593f41acfbdb0d2eee14a, type: 3}
-    - target: {fileID: 8266847513041852826, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1657069056}
     - target: {fileID: 8451236963971753761, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
       propertyPath: moveJoystick
       value: 
       objectReference: {fileID: 503188619}
-    m_RemovedComponents:
-    - {fileID: 127739411433489380, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7620155743950208463, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2055608752}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c380976acaa7f57408f5f116500f5f08, type: 3}
 --- !u!1660057539 &9223372036854775807

@@ -7,20 +7,15 @@ public class WeaponData : ScriptableObject
     public string weaponName;
 
     [Header("Damage")]
-    [Min(0)]
-    public float damage = 10f;
-    [Min(1)]
-    public float range = 20f;
+    [Min(0)] public float damage = 10f;
+    [Min(1)] public float range = 20f;
     [Tooltip("Seconds between shots")]
-    [Min(0.01f)]
-    public float fireRate = 0.25f;
+    [Min(0.01f)] public float fireRate = 0.25f;
 
     [Header("Ammo")]
     public bool infiniteAmmo;
-    [Min(1)]
-    public int magazineSize = 12;
-    [Min(0)]
-    public int maxAmmo = 120;
+    [Min(1)] public int magazineSize = 12;
+    [Min(0)] public int maxAmmo = 120;
 
     [Header("Reload")]
     public float reloadTime = 1.5f;
@@ -29,9 +24,9 @@ public class WeaponData : ScriptableObject
     [Tooltip("Random spread angle in degrees")]
     public float spreadAngle = 0f;
 
-    [Header("Effects")]
-    public ParticleSystem muzzleFlash;
-    public ParticleSystem defaultImpact;
-    public ParticleSystem fleshImpact;
-    public ParticleSystem objectImpact;
+    [Header("Effects — Pool ID, phải khớp ID đăng ký trong PoolManager")]
+    public string muzzleFlashID;
+    public string defaultImpactID;
+    public string fleshImpactID;
+    public string objectImpactID;
 }

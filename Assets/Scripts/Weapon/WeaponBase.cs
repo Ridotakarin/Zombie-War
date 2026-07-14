@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
@@ -37,10 +38,7 @@ public abstract class WeaponBase : MonoBehaviour
     protected virtual bool CanFire()
     {
         bool hasAmmo = weaponData.infiniteAmmo || currentAmmo > 0;
-
-        bool cooldownFinished =
-            Time.time >= lastFireTime + weaponData.fireRate;
-
+        bool cooldownFinished = Time.time >= lastFireTime + weaponData.fireRate;
         return hasAmmo && cooldownFinished;
     }
 
@@ -50,10 +48,7 @@ public abstract class WeaponBase : MonoBehaviour
             currentAmmo--;
     }
 
-    protected virtual void StartCooldown()
-    {
-        lastFireTime = Time.time;
-    }
+    protected virtual void StartCooldown() => lastFireTime = Time.time;
 
     protected abstract void Fire();
 
@@ -69,7 +64,6 @@ public abstract class WeaponBase : MonoBehaviour
             return direction;
 
         float angle = Random.Range(-weaponData.spreadAngle, weaponData.spreadAngle);
-
         return Quaternion.AngleAxis(angle, Vector3.up) * direction;
     }
 
@@ -78,51 +72,52 @@ public abstract class WeaponBase : MonoBehaviour
         Debug.Log($"Firing {weaponData.weaponName}");
     }
 
-    protected virtual void SpawnEffect(ParticleSystem prefab,
-        Vector3 position,
-        Quaternion rotation,
-        float destroyTime)
+    protected virtual void SpawnEffect(string poolID, Vector3 position, Quaternion rotation, float releaseDelay)
     {
-        if (prefab == null)
+        if (string.IsNullOrEmpty(poolID))
             return;
 
-        ParticleSystem effect = Instantiate(prefab, position, rotation);
+        PoolObject obj = PoolManager.Instance.Spawn(poolID);
+        if (obj == null)
+            return;
 
-        effect.Play();
+        obj.transform.SetPositionAndRotation(position, rotation); // bước bắt buộc, không được thiếu
 
-        Destroy(effect.gameObject, destroyTime);
+        // Chạy trên PoolManager (singleton luôn active) — KHÔNG chạy trên
+        // súng này, vì SwitchWeapon() SetActive(false) súng cũ sẽ huỷ ngang
+        // coroutine, làm particle rò rỉ vĩnh viễn khỏi pool.
+        PoolManager.Instance.StartCoroutine(ReleaseAfter(obj, releaseDelay));
+    }
+
+    private static IEnumerator ReleaseAfter(PoolObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PoolManager.Instance.Release(obj);
     }
 
     protected virtual void PlayMuzzleFlash(Transform firePoint, Transform muzzlePoint)
     {
-        SpawnEffect(weaponData.muzzleFlash,
-            firePoint.position,
-            muzzlePoint.rotation,
-            0.12f);
+        SpawnEffect(weaponData.muzzleFlashID, firePoint.position, muzzlePoint.rotation, 0.12f);
     }
 
     protected virtual void SpawnHitEffect(RaycastHit hit)
     {
-        ParticleSystem effect = weaponData.defaultImpact;
+        string effectID = weaponData.defaultImpactID;
 
         if (hit.collider.TryGetComponent(out Surface surface))
         {
             switch (surface.SurfaceType)
             {
                 case SurfaceType.Flesh:
-                    effect = weaponData.fleshImpact;
+                    effectID = weaponData.fleshImpactID;
                     break;
-
                 case SurfaceType.Object:
-                    effect = weaponData.objectImpact;
+                    effectID = weaponData.objectImpactID;
                     break;
             }
         }
 
-        SpawnEffect(effect,
-            hit.point,
-            Quaternion.LookRotation(hit.normal),
-            1f);
+        SpawnEffect(effectID, hit.point, Quaternion.LookRotation(hit.normal), 1f);
     }
 
     #endregion
@@ -131,17 +126,11 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void Reload()
     {
-        if (weaponData.infiniteAmmo)
-            return;
-
-        if (currentAmmo >= weaponData.magazineSize)
-            return;
-
-        if (reserveAmmo <= 0)
-            return;
+        if (weaponData.infiniteAmmo) return;
+        if (currentAmmo >= weaponData.magazineSize) return;
+        if (reserveAmmo <= 0) return;
 
         int needAmmo = weaponData.magazineSize - currentAmmo;
-
         int reloadAmount = Mathf.Min(needAmmo, reserveAmmo);
 
         currentAmmo += reloadAmount;
@@ -161,7 +150,6 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponData Data => weaponData;
     public float FireRate => weaponData.fireRate;
     public int CurrentAmmo => currentAmmo;
-
     public int ReserveAmmo => reserveAmmo;
 
     #endregion
