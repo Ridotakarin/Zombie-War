@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <p align="center">
-  <img src="README_assets/banner.png" width="100%" alt="Zombie War Banner"/>
+  <img src="README_assets/Banner.png" width="100%" alt="Zombie War Banner"/>
 </p>
 
 <h1 align="center">Zombie War — Top-Down Zombie Survival</h1>
@@ -31,7 +31,8 @@ Hệ thống hướng dẫn trong game được chia thành 4 trang trực quan 
 ### 1. Di chuyển bằng Virtual Joystick
 Để sinh tồn trước bầy xác sống đông đảo, việc làm chủ hướng di chuyển là ưu tiên số một.
 <p align="center">
-  <img src="README_assets/tutorial_joystick.png" width="80%" alt="Joystick Tutorial"/>
+  <img src="README_assets/Joystick.png" width="80%" alt="Joystick Tutorial"/>
+  <img src="README_assets/Button.png" width="80%" alt="Joystick Tutorial"/>
 </p>
 
 * **Cơ chế:** Sử dụng nút xoay ảo (**Virtual Joystick**) ở góc trái màn hình cảm ứng để điều khiển hướng chạy của nhân vật.
@@ -42,7 +43,7 @@ Hệ thống hướng dẫn trong game được chia thành 4 trang trực quan 
 ### 2. Nhặt Vật phẩm Tiếp tế (Loot Items)
 Dọc đường đi, các hòm tiếp tế là nguồn cứu trợ sinh mạng cực kỳ quan trọng.
 <p align="center">
-  <img src="README_assets/tutorial_loot.png" width="80%" alt="Loot Items Tutorial"/>
+  <img src="README_assets/gameplay_2.png" width="80%" alt="Loot Items Tutorial"/>
 </p>
 
 * **Cơ chế:** Bước vào **Vòng tròn phát sáng (Glow Indicator)** xung quanh vật phẩm rơi trên đất để tự động thu thập.
@@ -56,12 +57,10 @@ Dọc đường đi, các hòm tiếp tế là nguồn cứu trợ sinh mạng c
 ### 3. Kho Vũ khí Đa dạng (Multi-Weapon)
 Linh hoạt thay đổi hỏa lực tùy theo tình huống đối đầu với từng loại Zombie.
 <p align="center">
-  <img src="README_assets/tutorial_weapons.png" width="80%" alt="Weapons Tutorial"/>
+  <img src="README_assets/weapons.png" width="80%" alt="Weapons Tutorial"/>
 </p>
 
 * **Nút Switch (Đổi súng):** Nhấn để đổi qua lại giữa các vũ khí đã mở khóa.
-  * **Pistol:** Vô hạn đạn, độ chính xác cao, thích hợp tỉa lẻ dọn đường.
-  * **Rifle:** Tốc độ xả đạn nhanh, sát thương cao, chuyên dùng khi quái tràn ra quá đông.
 * **Nút Bomb (Lựu đạn):** Ném một quả bom hẹn giờ gây sát thương diện rộng cực lớn (Splash Damage) dọn dẹp các cụm Zombie trong tích tắc.
 
 ---
@@ -69,10 +68,11 @@ Linh hoạt thay đổi hỏa lực tùy theo tình huống đối đầu với 
 ### 4. Tiến tới Đích đến (Reach Goal)
 Mục tiêu cuối cùng là sống sót xuyên qua cả 3 khu vực nguy hiểm để tới điểm sơ tán.
 <p align="center">
-  <img src="README_assets/tutorial_goal.png" width="80%" alt="Reach Goal Tutorial"/>
+  <img src="README_assets/Stage.png" width="80%" alt="Reach Goal Tutorial"/>
+  <img src="README_assets/gameplay_3.png" width="80%" alt="Reach Goal Tutorial"/>
 </p>
 
-* **Cơ chế:** Map được chia làm 3 khu vực với độ khó tăng dần. Khi tiến vào vùng cuối cùng (Khu vực 3), hãy tìm kiếm **Vòng tròn cứu hộ/Cổng thoát hiểm**.
+* **Cơ chế:** Map theo hướng ngang, hãy cố sống sót và tìm kiếm **Khu vực doanh trại quân đội**.
 * **Điều kiện chiến thắng:** Chạm vào điểm đích để kích hoạt trực thăng/xe cứu hộ di tản và hoàn thành màn chơi an toàn.
 
 ---
@@ -97,6 +97,9 @@ Mục tiêu cuối cùng là sống sót xuyên qua cả 3 khu vực nguy hiểm
 
 ### 🎯 Combat
 - Bắn theo raycast, có tracer hiển thị đường đạn thời gian thực (LineRenderer).
+  <p align="center">
+  <img src="README_assets/gameplay_1.png" width="80%" alt="Weapons Tutorial"/>
+</p>
 - Hiệu ứng trúng đạn khác nhau theo bề mặt (thịt / vật thể).
 
 ### 🗺️ Level Design
