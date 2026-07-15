@@ -115,7 +115,7 @@ Mục tiêu cuối cùng là sống sót xuyên qua cả 3 khu vực nguy hiểm
 ## 🚀 Cài đặt
   **[https://drive.google.com/drive/folders/1131bY7NVwoBbzlJy-ED-8g9FOZaaKrsp?usp=drive_link]**
 ### ⚙️ Quick Start
-1. **Clone:** `git clone <đường-dẫn-repo-của-bạn>`
+1. **Clone:** `git này`
 2. **Mở:** Unity 6.5 hoặc mới hơn.
 3. **Chạy:** Load scene `Assets/Scenes/Menu.unity`.
 
