@@ -153,6 +153,8 @@ public class WeaponController : MonoBehaviour
     }
 
     public int GrenadeCount => grenadeCount;
+    public int CurrentAmmo => weapons.Count > 0 ? weapons[currentWeaponIndex].CurrentAmmo : 0;
+    public int ReserveAmmo => weapons.Count > 0 ? weapons[currentWeaponIndex].ReserveAmmo : 0;
 
     #endregion
 }

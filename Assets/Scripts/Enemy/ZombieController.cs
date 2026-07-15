@@ -7,7 +7,9 @@ public class ZombieController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator;
-    
+    [SerializeField] private AudioClip deadSound;
+
+
     private Enemy enemy;
     private NavMeshAgent agent;
     private Transform target;
@@ -112,6 +114,7 @@ public class ZombieController : MonoBehaviour
         agent.isStopped = true;
         agent.enabled = false;
 
+        AudioManager.Instance?.PlaySFX(deadSound);
         animator.Play(Random.Range(0, 1) == 0? "Dead" : "Dead_Ex");
     }
     

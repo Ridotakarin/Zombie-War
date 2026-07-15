@@ -5,8 +5,8 @@ public abstract class WeaponBase : MonoBehaviour
 {
     [SerializeField] protected WeaponData weaponData;
 
-    protected int currentAmmo;      // Đạn trong băng
-    protected int reserveAmmo;      // Đạn dự trữ
+    protected int currentAmmo;      
+    protected int reserveAmmo;     
 
     protected float lastFireTime;
 
@@ -69,7 +69,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     protected virtual void PlayFireSound()
     {
-        Debug.Log($"Firing {weaponData.weaponName}");
+        AudioManager.Instance?.PlaySFX(weaponData.fireSound);
     }
 
     protected virtual void SpawnEffect(string poolID, Vector3 position, Quaternion rotation, float releaseDelay)
@@ -81,11 +81,7 @@ public abstract class WeaponBase : MonoBehaviour
         if (obj == null)
             return;
 
-        obj.transform.SetPositionAndRotation(position, rotation); // bước bắt buộc, không được thiếu
-
-        // Chạy trên PoolManager (singleton luôn active) — KHÔNG chạy trên
-        // súng này, vì SwitchWeapon() SetActive(false) súng cũ sẽ huỷ ngang
-        // coroutine, làm particle rò rỉ vĩnh viễn khỏi pool.
+        obj.transform.SetPositionAndRotation(position, rotation); 
         PoolManager.Instance.StartCoroutine(ReleaseAfter(obj, releaseDelay));
     }
 

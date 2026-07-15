@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grenade
   explosionVFX: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+  explosedSound: {fileID: 8300000, guid: 5d361ce6d64424960bd9d6e80255a6ad, type: 3}
   explosionRadius: 8
   explosionForce: 15
   upwardsModifier: 1

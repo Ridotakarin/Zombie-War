@@ -25,3 +25,4 @@ MonoBehaviour:
   defaultImpactID: Default
   fleshImpactID: Flesh
   objectImpactID: Object
+  fireSound: {fileID: 8300000, guid: 45919062440ec114b91ec9cbd9805853, type: 3}

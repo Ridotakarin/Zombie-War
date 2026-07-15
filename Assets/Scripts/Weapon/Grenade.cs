@@ -4,6 +4,7 @@ public class Grenade : MonoBehaviour
 {
     [Header("Explosion")]
     [SerializeField] private GameObject explosionVFX;
+    [SerializeField] private AudioClip explosedSound;
 
     [SerializeField] private float explosionRadius = 5f;
     [SerializeField] private float explosionForce = 15f;
@@ -29,7 +30,7 @@ public class Grenade : MonoBehaviour
             Instantiate(explosionVFX, transform.position, Quaternion.identity);
         }
 
-        //AudioManager.Instance?.Explosion();
+        AudioManager.Instance?.PlaySFX(explosedSound);
 
         Collider[] victims = Physics.OverlapSphere(transform.position,explosionRadius,affectedLayers);
 

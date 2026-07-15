@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieController
   animator: {fileID: 2896671681776710880}
+  deadSound: {fileID: 8300000, guid: 6dd9cdde06b5e0445a0742c9d321de58, type: 3}
 --- !u!54 &1536202594207956560
 Rigidbody:
   m_ObjectHideFlags: 0

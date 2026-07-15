@@ -24,9 +24,12 @@ public class WeaponData : ScriptableObject
     [Tooltip("Random spread angle in degrees")]
     public float spreadAngle = 0f;
 
-    [Header("Effects — Pool ID, phải khớp ID đăng ký trong PoolManager")]
+    [Header("Effects — Pool ID")]
     public string muzzleFlashID;
     public string defaultImpactID;
     public string fleshImpactID;
     public string objectImpactID;
+
+    [Header("Audio")]
+    public AudioClip fireSound;
 }
