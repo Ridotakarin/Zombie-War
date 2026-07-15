@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int HurtHash = Animator.StringToHash("Hurt");
     private static readonly int RifleHash = Animator.StringToHash("Rifle_Shoot");
     private static readonly int PistolHash = Animator.StringToHash("Pistol_Shoot");
+    private static readonly int ThrowHash = Animator.StringToHash("Throw");
 
 
     private static readonly int HandLayer = 1;
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
         if (input.BombPressed)
         {
-            weaponController.ThrowGrenade();
+            animator.SetTrigger(ThrowHash);
             input.UseBomb();
         }
     }
@@ -143,6 +144,10 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(SpeedHash, currentSpeed);
     }
 
+    public void ThrowBomb()
+    {
+        weaponController.ThrowGrenade();
+    }
     private void OnPlayerDead()
     {
         animator.SetLayerWeight(HandLayer, 0f);
