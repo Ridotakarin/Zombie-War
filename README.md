@@ -16,9 +16,9 @@
 
 ## 👋 Giới thiệu
 
-**Zombie War** là một game top-down action sinh tồn, nơi người chơi điều khiển một người lính chiến đấu xuyên qua 3 khu vực đầy zombie để tới điểm đích. Dự án tập trung vào một combat loop dồn dập: né tránh — bắn — quăng bom, kết hợp hệ thống pooling và tối ưu hiệu năng để đảm bảo chạy mượt trên nhiều thiết bị Android.
+**Zombie War** là một game top-down action sinh tồn, nơi người chơi điều khiển một người lính chiến đấu xuyên qua khu vực đầy zombie để tới điểm đích. Dự án tập trung vào một combat loop dồn dập: chạy trốn — bắn — quăng bom, kết hợp hệ thống pooling và tối ưu hiệu năng để đảm bảo chạy mượt trên nhiều thiết bị Android.
 
-Góc nhìn camera lấy cảm hứng từ phong cách top-down nghiêng của *Last Day on Earth*, theo sát nhân vật bằng Cinemachine.
+Góc nhìn camera lấy trọng tâm góc nhìn từ top-down nghiêng của *Last Day on Earth*, theo sát nhân vật bằng Cinemachine.
 
 ---
 
@@ -49,8 +49,8 @@ Dọc đường đi, các hòm tiếp tế là nguồn cứu trợ sinh mạng c
 * **Cơ chế:** Bước vào **Vòng tròn phát sáng (Glow Indicator)** xung quanh vật phẩm rơi trên đất để tự động thu thập.
 * **Các loại tiếp tế:**
   * **Hộp cứu thương (Medkit):** Hồi phục một lượng máu ngay lập tức.
-  * **Thùng đạn (Ammo):** Bổ sung đạn dự phòng cho vũ khí hiện tại.
-  * **Mở khóa súng:** Nhặt vũ khí mới (ví dụ: Rifle) để gia tăng hỏa lực.
+  * **Thùng bom (Bomb):** Bổ sung thêm bomb để ném.
+  * **Mở khóa súng:** Nhặt vũ khí mới (ví dụ: Rifle) để gia tăng hỏa lực và nạp lại đạn.
 
 ---
 
@@ -68,8 +68,8 @@ Linh hoạt thay đổi hỏa lực tùy theo tình huống đối đầu với 
 ### 4. Tiến tới Đích đến (Reach Goal)
 Mục tiêu cuối cùng là sống sót xuyên qua cả 3 khu vực nguy hiểm để tới điểm sơ tán.
 <p align="center">
-  <img src="README_assets/Stage.png" width="80%" alt="Reach Goal Tutorial"/>
-  <img src="README_assets/gameplay_3.png" width="80%" alt="Reach Goal Tutorial"/>
+  <img src="README_assets/Stage.png" width="45%" alt="Reach Goal Tutorial"/>
+  <img src="README_assets/gameplay_3.png" width="45%" alt="Reach Goal Tutorial"/>
 </p>
 
 * **Cơ chế:** Map theo hướng ngang, hãy cố sống sót và tìm kiếm **Khu vực doanh trại quân đội**.
@@ -103,7 +103,7 @@ Mục tiêu cuối cùng là sống sót xuyên qua cả 3 khu vực nguy hiểm
 - Hiệu ứng trúng đạn khác nhau theo bề mặt (thịt / vật thể).
 
 ### 🗺️ Level Design
-- Map chia 3 khu vực, zombie spawn theo trigger khi người chơi tiến vào từng khu vực — tạo nhịp độ tăng dần thay vì dồn hết quái ngay từ đầu.
+- Map chia trải dài cả khu vực, zombie spawn theo trigger khi người chơi tiến vào từng khu vực — tạo nhịp độ tăng dần thay vì dồn hết quái ngay từ đầu.
 - Chạm điểm đích ở cuối khu vực 3 để chiến thắng.
 
 ### 🖥️ UI & Đa nền tảng
@@ -130,9 +130,9 @@ Mục tiêu cuối cùng là sống sót xuyên qua cả 3 khu vực nguy hiểm
 
 ## 👤 Liên hệ
 
-**[Tên của bạn]** — Game Developer
-* **LinkedIn:** [Link LinkedIn của bạn]
-* **Email:** [Email của bạn]
+**Lâm Nhật Huy** — Game Developer
+* **LinkedIn:** [(https://www.linkedin.com/in/huy-l%C3%A2m-3405142a5/)]
+* **Email:** [huylam275@gmail.com]
 
 ---
 <p align="center">
