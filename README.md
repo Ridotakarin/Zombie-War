@@ -57,7 +57,7 @@ Dọc đường đi, các hòm tiếp tế là nguồn cứu trợ sinh mạng c
 ### 3. Kho Vũ khí Đa dạng (Multi-Weapon)
 Linh hoạt thay đổi hỏa lực tùy theo tình huống đối đầu với từng loại Zombie.
 <p align="center">
-  <img src="README_assets/weapons.png" width="80%" alt="Weapons Tutorial"/>
+  <img src="README_assets/Weapons.png" width="80%" alt="Weapons Tutorial"/>
 </p>
 
 * **Nút Switch (Đổi súng):** Nhấn để đổi qua lại giữa các vũ khí đã mở khóa.
