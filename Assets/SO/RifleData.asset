@@ -20,7 +20,7 @@ MonoBehaviour:
   magazineSize: 30
   maxAmmo: 120
   reloadTime: 2
-  spreadAngle: 1
+  spreadAngle: 5
   muzzleFlashID: Muzzle
   defaultImpactID: Default
   fleshImpactID: Flesh

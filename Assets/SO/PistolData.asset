@@ -16,11 +16,11 @@ MonoBehaviour:
   damage: 10
   range: 10
   fireRate: 0.5
-  infiniteAmmo: 1
+  infiniteAmmo: 0
   magazineSize: 12
   maxAmmo: 60
   reloadTime: 2
-  spreadAngle: 0
+  spreadAngle: 1
   muzzleFlashID: Muzzle
   defaultImpactID: Default
   fleshImpactID: Flesh

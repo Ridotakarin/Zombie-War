@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Zombie
   maxHealth: 100
-  moveSpeed: 3
-  attackRange: 2
+  moveSpeed: 6
+  attackRange: 1
   attackDamage: 10
   attackCooldown: 1
-  chaseRange: 15
+  chaseRange: 100

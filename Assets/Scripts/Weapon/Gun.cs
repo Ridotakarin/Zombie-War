@@ -5,7 +5,6 @@ public class Gun : WeaponBase
     [Header("References")]
     [SerializeField] private Transform firePoint;
     [SerializeField] private Transform muzzlePoint;
-    [SerializeField] private AudioClip gunSound;
 
     [Header("Layer Mask")]
     [SerializeField] private LayerMask hitMask = ~0;

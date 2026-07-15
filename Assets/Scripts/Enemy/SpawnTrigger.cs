@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(SphereCollider))]
 public class SpawnTrigger : MonoBehaviour
 {
     [SerializeField] private EnemySpawner enemySpawner;

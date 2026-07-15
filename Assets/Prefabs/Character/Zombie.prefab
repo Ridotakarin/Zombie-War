@@ -77,7 +77,7 @@ MonoBehaviour:
   poolID: 
   enemyData: {fileID: 11400000, guid: 5066888b460b4a846933626376e0f8ca, type: 2}
   currentHealth: 100
-  currentMoveSpeed: 3
+  currentMoveSpeed: 6
 --- !u!114 &15791972653839289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,8 +100,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5046938679190597684}
   serializedVersion: 5
-  m_Mass: 0.5
-  m_LinearDamping: 1
+  m_Mass: 1
+  m_LinearDamping: 0
   m_AngularDamping: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

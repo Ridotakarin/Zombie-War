@@ -145,6 +145,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     public WeaponData Data => weaponData;
     public float FireRate => weaponData.fireRate;
+    public float FireRange => weaponData.range;
     public int CurrentAmmo => currentAmmo;
     public int ReserveAmmo => reserveAmmo;
 
