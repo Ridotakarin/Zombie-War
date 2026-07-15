@@ -31,8 +31,8 @@ Hệ thống hướng dẫn trong game được chia thành 4 trang trực quan 
 ### 1. Di chuyển bằng Virtual Joystick
 Để sinh tồn trước bầy xác sống đông đảo, việc làm chủ hướng di chuyển là ưu tiên số một.
 <p align="center">
-  <img src="README_assets/Joystick.png" width="80%" alt="Joystick Tutorial"/>
-  <img src="README_assets/Button.png" width="80%" alt="Joystick Tutorial"/>
+  <img src="README_assets/Joystick.png" width="45%" alt="Joystick Tutorial"/>
+  <img src="README_assets/Button.png" width="45%" alt="Joystick Tutorial"/>
 </p>
 
 * **Cơ chế:** Sử dụng nút xoay ảo (**Virtual Joystick**) ở góc trái màn hình cảm ứng để điều khiển hướng chạy của nhân vật.
